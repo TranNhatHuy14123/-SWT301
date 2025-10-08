@@ -1,0 +1,32 @@
+package DE180675_Tran_Nhat_Huy;
+
+import java.util.regex.Pattern;
+
+public class AccountService {
+
+    private static final String EMAIL_REGEX = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+.com+$";
+    private static final Pattern EMAIL_PATTERN = Pattern.compile(EMAIL_REGEX);
+
+    public boolean registerAccount(String username, String password, String email) {
+        if (username == null || username.isEmpty()) {
+            return false;
+        }
+        if (password == null || password.length() <= 6) {
+            return false;
+        }
+        if (!isValidEmail(email)) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean isValidEmail(String email) {
+        if (email == null || email.isEmpty()) {
+
+            return false;
+        }
+        return EMAIL_PATTERN.matcher(email).matches();
+    }
+}
+
+
